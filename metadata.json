@@ -1,0 +1,6 @@
+{
+  "name": "CopaGlobe - FIFA World Cup Chronicles",
+  "description": "An immersive FIFA World Cup visual blog and interactive tournament chronicle featuring 10 in-depth articles, legendary moments, photo essays, and tactical analysis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
