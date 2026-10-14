@@ -110,9 +110,9 @@ export default function App() {
       };
     }
 
-    // Default Home Page Title Tag (53 characters: Keyword-first, 50-60 chars, high-CTR hook)
+    // Default Home Page Title Tag (54 characters: Keyword-first, natural question)
     return {
-      currentTitle: 'FIFA World Cup Chronicles: 10 Untold Stories & Photos',
+      currentTitle: 'FIFA World Cup: What Are Football’s 10 Greatest Stories?',
       currentDescription: 'Explore our FIFA World Cup blog featuring 10 rich visual chronicles, tactical match analyses, and iconic moments. Dive into football’s greatest stories today!'
     };
   }, [selectedArticle, isBookmarksOpen, selectedCategory]);
@@ -273,6 +273,20 @@ export default function App() {
 
       {/* Main Container */}
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        {/* The One H1 per Page: The Main Topic */}
+        <header className="pt-6 pb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-500/10 text-amber-400 border border-amber-500/25 mb-3">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>FIFA World Cup Chronicles & Tactical Archive</span>
+          </div>
+          <h1 className="font-heading font-black text-2xl sm:text-4xl md:text-5xl text-white tracking-tight leading-tight">
+            FIFA World Cup: What Are Football’s 10 Greatest Stories?
+          </h1>
+          <p className="mt-3 text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed">
+            Welcome to football’s visual chronicle. Step inside 10 illustrated chapters exploring legendary finals, tactical revolutions, mythic arenas, and the road to North America 2026.
+          </p>
+        </header>
+
         {/* Hero Carousel (Shown when browsing All and no active search) */}
         {selectedCategory === 'All' && !searchQuery && (
           <HeroCarousel
@@ -281,13 +295,15 @@ export default function App() {
           />
         )}
 
-        {/* Filters and Header Bar */}
+        {/* Chapter 1: The 10 Chronicles */}
         <div className="mt-8 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
           <div>
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
               <h2 className="font-heading font-black text-xl sm:text-2xl text-white">
-                {searchQuery ? `Search Results for "${searchQuery}"` : `${selectedCategory} Chronicles`}
+                {searchQuery
+                  ? `Search Results for "${searchQuery}"`
+                  : `Chapter 1: The 10 Defining World Cup Stories — How Did Legends Shape the Game?`}
               </h2>
             </div>
             <p className="text-xs text-slate-400 mt-1">
@@ -356,9 +372,9 @@ export default function App() {
             <div className="flex items-center gap-2">
               <Camera className="w-5 h-5 text-amber-400" />
               <div>
-                <h3 className="font-heading font-black text-xl text-white">
-                  Matchday Visual Spotlight
-                </h3>
+                <h2 className="font-heading font-black text-xl sm:text-2xl text-white">
+                  Chapter 2: Matchday Visual Spotlight — What Did History Look Like from the Pitch?
+                </h2>
                 <p className="text-xs text-slate-400">
                   Click any image to launch the high-resolution lightbox viewer
                 </p>

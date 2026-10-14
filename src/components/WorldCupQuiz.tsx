@@ -50,7 +50,7 @@ export const WorldCupQuiz: React.FC = () => {
           <span>Interactive Football IQ Challenge</span>
         </div>
         <h2 className="font-heading font-black text-2xl sm:text-3xl text-white">
-          The World Cup Mastermind Quiz
+          Chapter 4: The Mastermind Quiz — How High Is Your World Cup IQ?
         </h2>
         <p className="text-xs sm:text-sm text-slate-400 mt-1 mb-8">
           Test your knowledge of legendary World Cup records, iconic goals, and tournament lore.

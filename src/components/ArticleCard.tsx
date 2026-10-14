@@ -78,9 +78,9 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
       <div className="flex-1 p-5 flex flex-col justify-between">
         <div>
           {/* Title */}
-          <h2 className="font-heading font-bold text-lg text-white group-hover:text-amber-400 transition-colors line-clamp-2 leading-snug">
+          <h3 className="font-heading font-bold text-lg text-white group-hover:text-amber-400 transition-colors line-clamp-2 leading-snug">
             {article.title}
-          </h2>
+          </h3>
 
           {/* Excerpt */}
           <p className="mt-2 text-xs sm:text-sm text-slate-400 line-clamp-2 leading-relaxed">

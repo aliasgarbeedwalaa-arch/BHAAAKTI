@@ -28,8 +28,8 @@ export const HallOfFame: React.FC = () => {
             <Trophy className="w-4 h-4" />
             <span>Official FIFA World Cup Roll of Honour</span>
           </div>
-          <h2 className="font-heading font-black text-3xl sm:text-4xl text-white">
-            Hall of Champions & Golden Boot Pantheon
+          <h2 className="font-heading font-black text-2xl sm:text-3xl text-white">
+            Chapter 3: Hall of Champions — Who Won Every World Cup from 1930 to 2022?
           </h2>
           <p className="mt-2 text-sm text-slate-400 max-w-2xl">
             Explore every World Cup tournament from Uruguay 1930 to Qatar 2022. Analyze all-time title counts, legendary scores, and tournament top marksmen.

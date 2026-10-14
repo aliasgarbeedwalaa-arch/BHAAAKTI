@@ -60,13 +60,13 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({ articles, onSelectAr
           </span>
         </div>
 
-        {/* Title */}
-        <h1 
+        {/* Featured Story Title */}
+        <h2 
           onClick={() => onSelectArticle(current)}
           className="font-heading text-2xl sm:text-4xl md:text-5xl font-black text-white leading-tight tracking-tight cursor-pointer hover:text-amber-300 transition-colors drop-shadow-md"
         >
           {current.title}
-        </h1>
+        </h2>
 
         {/* Subtitle / Excerpt */}
         <p className="mt-3 text-sm sm:text-base md:text-lg text-slate-300 line-clamp-2 md:line-clamp-3 font-normal max-w-3xl drop-shadow">
