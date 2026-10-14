@@ -58,6 +58,8 @@ export interface Article {
   date: string;
   readTime: string;
   featured?: boolean;
+  seoTitle: string;
+  seoDescription: string;
   author: Author;
   pullQuote: string;
   pullQuoteAuthor: string;

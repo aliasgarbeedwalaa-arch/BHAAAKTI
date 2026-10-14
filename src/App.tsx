@@ -9,6 +9,7 @@ import { PhotoLightbox } from './components/PhotoLightbox';
 import { HallOfFame } from './components/HallOfFame';
 import { WorldCupQuiz } from './components/WorldCupQuiz';
 import { BookmarksDrawer } from './components/BookmarksDrawer';
+import { SeoInspectorModal } from './components/SeoInspectorModal';
 import { Footer } from './components/Footer';
 import { toggleStadiumAmbience } from './utils/audio';
 import { Sparkles, Filter, SlidersHorizontal, Camera } from 'lucide-react';
@@ -55,6 +56,86 @@ export default function App() {
     });
     return map;
   });
+
+  const [isSeoModalOpen, setIsSeoModalOpen] = useState(false);
+
+  // Dynamic Title Tag & Meta Description (50–60 characters, main keyword first, distinct per page, high CTR)
+  const { currentTitle, currentDescription } = useMemo(() => {
+    if (selectedArticle) {
+      return {
+        currentTitle: selectedArticle.seoTitle,
+        currentDescription: selectedArticle.seoDescription
+      };
+    }
+    if (isBookmarksOpen) {
+      return {
+        currentTitle: 'Saved World Cup Chronicles: Your Custom Reading List',
+        currentDescription: 'Access your bookmarked FIFA World Cup chronicles and reading list for offline analysis and match reviews.'
+      };
+    }
+    if (selectedCategory === 'Iconic Finals') {
+      return {
+        currentTitle: 'World Cup Final Classics: The 10 Most Dramatic Duels',
+        currentDescription: 'Relive the most dramatic World Cup Finals in football history with minute-by-minute tactical analysis and match photography.'
+      };
+    }
+    if (selectedCategory === 'Tactics & Evolution') {
+      return {
+        currentTitle: 'World Cup Tactics & Evolution: Blueprint of Champions',
+        currentDescription: 'From Dutch Total Football and Italian catenaccio to modern pressing: how tactical masterminds conquered the FIFA World Cup.'
+      };
+    }
+    if (selectedCategory === 'Legendary Icons') {
+      return {
+        currentTitle: 'World Cup Legends: Pelé, Maradona, Zidane & Champions',
+        currentDescription: 'Explore the immortal heroes who shaped World Cup history with transcendent goals, saves, and tournament-winning masterclasses.'
+      };
+    }
+    if (selectedCategory === 'Underdog Miracles') {
+      return {
+        currentTitle: 'World Cup Underdogs: The Greatest Shock Runs in History',
+        currentDescription: 'From Morocco 2022 to Germany’s 7-1 demolition of Brazil, discover football’s most shocking upsets and fairytale tournament runs.'
+      };
+    }
+    if (selectedCategory === 'Stadiums & Venues') {
+      return {
+        currentTitle: 'World Cup Stadiums: 10 Mythic Arenas of Pure Drama',
+        currentDescription: 'Step inside the cathedrals of football: from Maracanã and Azteca to Lusail and MetLife Stadium ahead of North America 2026.'
+      };
+    }
+    if (selectedCategory === 'Future of Football') {
+      return {
+        currentTitle: 'FIFA World Cup 2026: 48 Teams, 3 Hosts & Ultimate Chaos',
+        currentDescription: 'The ultimate guide to the 2026 World Cup across USA, Mexico, and Canada. 104 matches, 12 groups, travel logistics, and next-gen stars.'
+      };
+    }
+
+    // Default Home Page Title Tag (53 characters: Keyword-first, 50-60 chars, high-CTR hook)
+    return {
+      currentTitle: 'FIFA World Cup Chronicles: 10 Untold Stories & Photos',
+      currentDescription: 'Explore our FIFA World Cup blog featuring 10 rich visual chronicles, tactical match analyses, and iconic moments. Dive into football’s greatest stories today!'
+    };
+  }, [selectedArticle, isBookmarksOpen, selectedCategory]);
+
+  // Sync document title and meta tags dynamically
+  useEffect(() => {
+    document.title = currentTitle;
+
+    const descMeta = document.querySelector('meta[name="description"]');
+    if (descMeta) descMeta.setAttribute('content', currentDescription);
+
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', currentTitle);
+
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', currentDescription);
+
+    const twTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twTitle) twTitle.setAttribute('content', currentTitle);
+
+    const twDesc = document.querySelector('meta[name="twitter:description"]');
+    if (twDesc) twDesc.setAttribute('content', currentDescription);
+  }, [currentTitle, currentDescription]);
 
   // Save bookmarks to localStorage
   useEffect(() => {
@@ -183,6 +264,7 @@ export default function App() {
         onToggleAmbience={handleToggleAmbience}
         bookmarkedCount={bookmarkedIds.length}
         onOpenBookmarks={() => setIsBookmarksOpen(true)}
+        onOpenSeoInspector={() => setIsSeoModalOpen(true)}
         onSelectArticleById={(id) => {
           const found = WORLD_CUP_ARTICLES.find(a => a.id === id);
           if (found) setSelectedArticle(found);
@@ -353,6 +435,16 @@ export default function App() {
         onSelectArticle={(art) => setSelectedArticle(art)}
         onRemoveBookmark={(id, e) => handleToggleBookmark(id, e)}
         onClearAll={handleClearBookmarks}
+      />
+
+      {/* SEO Title Tag Inspector Modal */}
+      <SeoInspectorModal
+        isOpen={isSeoModalOpen}
+        onClose={() => setIsSeoModalOpen(false)}
+        currentTitle={currentTitle}
+        currentDescription={currentDescription}
+        articles={WORLD_CUP_ARTICLES}
+        onSelectArticle={(art) => setSelectedArticle(art)}
       />
     </div>
   );

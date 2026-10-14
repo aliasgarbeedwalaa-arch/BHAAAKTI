@@ -12,6 +12,7 @@ interface NavbarProps {
   bookmarkedCount: number;
   onOpenBookmarks: () => void;
   onSelectArticleById: (id: string) => void;
+  onOpenSeoInspector: () => void;
 }
 
 const CATEGORIES: ArticleCategory[] = [
@@ -33,6 +34,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onToggleAmbience,
   bookmarkedCount,
   onOpenBookmarks,
+  onOpenSeoInspector,
 }) => {
   const [showSearchModal, setShowSearchModal] = useState(false);
 
@@ -141,6 +143,16 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {bookmarkedCount}
                 </span>
               )}
+            </button>
+
+            {/* Title Tags & SEO Inspector */}
+            <button
+              onClick={onOpenSeoInspector}
+              className="hidden lg:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-850 border border-slate-800 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-all"
+              title="Inspect page title tags (50–60 chars, keyword-first, unique per page)"
+            >
+              <Search className="w-3.5 h-3.5" />
+              <span>Title Tags (50–60 chars)</span>
             </button>
           </div>
         </div>
